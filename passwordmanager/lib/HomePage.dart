@@ -88,15 +88,9 @@ class Getdata extends StatelessWidget {
           if (!snapshot.hasData) return new Text("There is no expense");
 
           else{
-            if(_searchcontroller==null){
+
               return new ListView(children: getExpenseItems(snapshot));
-            }
-            else{
-              final searchdta = _searchcontroller.text;
-              final database = FirebaseFirestore.instance;
-              QuerySnapshot dtsnapshot = database.collection("account").where("Account Name: " + searchdta).snapshots() as QuerySnapshot<Object?>;
-              return new ListView(children: getdata(dtsnapshot));
-            }
+            
           }
 
         });
