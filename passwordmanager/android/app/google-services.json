@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "569097564106",
+    "project_id": "fluttterapppassword",
+    "storage_bucket": "fluttterapppassword.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:569097564106:android:9f19f03c26ef64af93a933",
+        "android_client_info": {
+          "package_name": "com.example.passwordmanager"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "569097564106-c404r4t0qd145bfvn4nudu479brn6kpr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCS3rYEnlVM2qst2mGADSgSAb0ortnVEAo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "569097564106-c404r4t0qd145bfvn4nudu479brn6kpr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
