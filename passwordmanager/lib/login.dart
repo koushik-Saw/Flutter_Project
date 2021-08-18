@@ -3,6 +3,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:passwordmanager/Home.dart';
 import 'package:passwordmanager/user.dart';
+// import 'package:google_sign_in/google_sign_in.dart';
+// import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
+
 
 class login extends StatefulWidget {
   const login({Key? key}) : super(key: key);
@@ -69,6 +72,7 @@ class _loginState extends State<login> {
                             color: Colors.pink,
                           )),
                           hintText: "Email"),
+                      keyboardType: TextInputType.emailAddress,
                       onChanged: (value) {
                         setState(() {
                           _email = value.trim();
@@ -122,6 +126,8 @@ class _loginState extends State<login> {
     );
   }
 
+
+
   Future signin() async {
     try {
       final UserCredential authResult = await auth.signInWithEmailAndPassword(
@@ -143,6 +149,30 @@ class _loginState extends State<login> {
       }
     }
   }
+
+  Future signup() async {
+    try {
+      final UserCredential authResult = await auth.createUserWithEmailAndPassword(
+          email: _email, password: _password);
+    } on FirebaseAuthException catch (e) {
+    }
+  }
+
+  // Future<UserCredential> signInWithGoogle() async {
+  //   final GoogleSignInAccount googleUser = await GoogleSignIn().signIn();
+  //   final GoogleSignInAuthentication googleAuth = await googleUser.authentication;
+  //   final credential = GoogleAuthProvider.credential(
+  //     accessToken: googleAuth.accessToken,
+  //     idToken: googleAuth.idToken,
+  //   );
+  //   return await FirebaseAuth.instance.signInWithCredential(credential);
+  // }
+  //
+  // Future<UserCredential> signInWithFacebook() async {
+  //   final LoginResult loginResult = await FacebookAuth.instance.login();
+  //   final OAuthCredential facebookAuthCredential = FacebookAuthProvider.credential(loginResult.accessToken!.token);
+  //   return FirebaseAuth.instance.signInWithCredential(facebookAuthCredential);
+  // }
 }
 
 

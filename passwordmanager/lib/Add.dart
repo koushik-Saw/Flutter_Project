@@ -30,7 +30,7 @@ class _AddState extends State<Add> {
         title: Text("Add"),
       ),
       body: SingleChildScrollView(
-          child: Container(
+        child: Container(
           child: Padding(
             padding: EdgeInsets.only(left: 20, top: 20, right: 20, bottom: 0),
             child: Column(
@@ -53,8 +53,7 @@ class _AddState extends State<Add> {
                     color: Colors.grey[500]!.withOpacity(.5),
                     borderRadius: BorderRadius.circular(16),
                   ),
-
-                      child: TextField(
+                  child: TextField(
                     controller: _accountcontroller,
                     decoration: InputDecoration(
                         border: InputBorder.none,
@@ -77,8 +76,7 @@ class _AddState extends State<Add> {
                     color: Colors.grey[500]!.withOpacity(.5),
                     borderRadius: BorderRadius.circular(16),
                   ),
-
-                      child: TextField(
+                  child: TextField(
                     controller: _usercontroller,
                     decoration: InputDecoration(
                         border: InputBorder.none,
@@ -101,8 +99,7 @@ class _AddState extends State<Add> {
                     color: Colors.grey[500]!.withOpacity(.5),
                     borderRadius: BorderRadius.circular(16),
                   ),
-
-                      child: TextField(
+                  child: TextField(
                     controller: _passwordcontroller,
                     decoration: InputDecoration(
                         border: InputBorder.none,
@@ -125,8 +122,7 @@ class _AddState extends State<Add> {
                     color: Colors.grey[500]!.withOpacity(.5),
                     borderRadius: BorderRadius.circular(16),
                   ),
-
-                      child: TextField(
+                  child: TextField(
                     controller: _emailcontroller,
                     decoration: InputDecoration(
                         border: InputBorder.none,
@@ -149,8 +145,7 @@ class _AddState extends State<Add> {
                     color: Colors.grey[500]!.withOpacity(.5),
                     borderRadius: BorderRadius.circular(16),
                   ),
-
-                      child: TextField(
+                  child: TextField(
                     controller: _phonecontroller,
                     decoration: InputDecoration(
                         border: InputBorder.none,
@@ -173,8 +168,7 @@ class _AddState extends State<Add> {
                     color: Colors.grey[500]!.withOpacity(.5),
                     borderRadius: BorderRadius.circular(16),
                   ),
-
-                      child: TextField(
+                  child: TextField(
                     controller: _recoverycontroller,
                     decoration: InputDecoration(
                         border: InputBorder.none,
@@ -192,7 +186,9 @@ class _AddState extends State<Add> {
                 ElevatedButton(
                     style: ElevatedButton.styleFrom(primary: Colors.green),
                     onPressed: () {
-                      savepassword();
+                      FirebaseFirestore.instance
+                          .collection('data')
+                          .add({"CompanyName": "Company name"});
                     },
                     child: Text("Add")),
               ],

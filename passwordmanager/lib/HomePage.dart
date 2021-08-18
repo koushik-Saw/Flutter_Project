@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-
 import 'login.dart';
 
 class HomePage extends StatefulWidget {
@@ -78,21 +77,22 @@ class _HomePageState extends State<HomePage> {
 
 class Getdata extends StatelessWidget {
   const Getdata({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     final db = FirebaseFirestore.instance;
     return new StreamBuilder<QuerySnapshot>(
-        stream: FirebaseFirestore.instance.collection("accounts").snapshots(),
+        stream: FirebaseFirestore.instance.collection("data").snapshots(),
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (!snapshot.hasData) return new Text("There is no expense");
-
           else{
-
-              return new ListView(children: getExpenseItems(snapshot));
-            
+              return ListView(
+                children: snapshot.data!.docs.map(
+                    (e) => Container(
+                      child: Center(child: Text(e["CompanyName"])),
+                    )
+                ).toList(),
+              );
           }
-
         });
   }
 }

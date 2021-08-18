@@ -1,16 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:passwordmanager/Add.dart';
-import 'package:passwordmanager/Update.dart';
-
-import 'HomePage.dart';
+import 'package:learner/home.dart';
+import 'package:learner/update.dart';
 
 class Home extends StatelessWidget {
   const Home({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: "Home",
       home: Myapp(),
@@ -36,13 +34,14 @@ class _MyappState extends State<Myapp> {
 
 class BottomNavigation extends StatefulWidget {
   const BottomNavigation({Key? key}) : super(key: key);
+
   @override
   _BottomNavigationState createState() => _BottomNavigationState();
 }
 
 class _BottomNavigationState extends State<BottomNavigation> {
   int indexno = 0;
-  final List<Widget> _childreen = [HomePage(), Add(), Updates()];
+  final List<Widget> _childreen = [Homepage(), Update()];
 
   void ontaped(int index) {
     setState(() {
@@ -53,18 +52,27 @@ class _BottomNavigationState extends State<BottomNavigation> {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
-      backgroundColor: Color(0xffffff),
-      body: _childreen[indexno],
-      bottomNavigationBar: BottomNavigationBar(
-        onTap: ontaped,
-        currentIndex: indexno,
-        items: [
-          BottomNavigationBarItem(icon: new Icon(Icons.home), label: "Home"),
-          BottomNavigationBarItem(icon: new Icon(Icons.add), label: "Add"),
-          BottomNavigationBarItem(icon: new Icon(Icons.print), label: "Update")
-        ],
-      ),
-    );
+        backgroundColor: Color(0xffffff),
+        body: _childreen[indexno],
+        bottomNavigationBar: new Theme(
+          data: Theme.of(context).copyWith(
+            canvasColor: Color(0xFFFFFFFF),
+            primaryColor: Colors.black,
+          ),
+          child: BottomNavigationBar(
+            onTap: ontaped,
+            currentIndex: indexno,
+            items: [
+              BottomNavigationBarItem(
+                  icon: new Icon(Icons.menu),
+                  label: "",
+                  backgroundColor: Colors.red),
+              BottomNavigationBarItem(
+                  icon: new Icon(Icons.person),
+                  label: "Teachers",
+                  backgroundColor: Colors.red)
+            ],
+          ),
+        ));
   }
 }
-
