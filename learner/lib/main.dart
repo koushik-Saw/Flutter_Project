@@ -3,7 +3,8 @@ import 'dart:async';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:learner/bottomnavigation.dart';
+import 'package:learner/home.dart';
+import 'package:learner/login.dart';
 
 void main() {
   runApp(
