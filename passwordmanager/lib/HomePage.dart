@@ -81,16 +81,12 @@ class Getdata extends StatelessWidget {
   Widget build(BuildContext context) {
     final db = FirebaseFirestore.instance;
     return new StreamBuilder<QuerySnapshot>(
-        stream: FirebaseFirestore.instance.collection("data").snapshots(),
+        stream: FirebaseFirestore.instance.collection("accounts").snapshots(),
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (!snapshot.hasData) return new Text("There is no expense");
           else{
               return ListView(
-                children: snapshot.data!.docs.map(
-                    (e) => Container(
-                      child: Center(child: Text(e["CompanyName"])),
-                    )
-                ).toList(),
+                children: getExpenseItems(snapshot),
               );
           }
         });

@@ -10,6 +10,8 @@ class Update extends StatefulWidget {
 class _UpdateState extends State<Update> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      backgroundColor: Colors.green,
+    );
   }
 }

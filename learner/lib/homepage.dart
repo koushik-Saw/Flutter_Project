@@ -1,5 +1,13 @@
+import 'dart:async';
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:learner/academic.dart';
+import 'package:learner/essentials.dart';
+import 'package:learner/update.dart';
+
+import 'login.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -26,7 +34,26 @@ class Homepage extends StatefulWidget {
 }
 
 class _HomepageState extends State<Homepage> {
-late List Data;
+  List data = [];
+
+  Future<String> getData() async {
+    var response = await rootBundle.loadString('assets/sample.json');
+    // await http.get(Uri.parse(url), headers: {"Accept": "application/json"});
+
+    setState(() {
+      var extract = json.decode(response);
+      data = extract["items"];
+    });
+
+    return "Success!";
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    this.getData();
+  }
+
   @override
   Widget build(BuildContext context) {
     SystemChrome.setEnabledSystemUIOverlays([SystemUiOverlay.bottom]);
@@ -37,20 +64,94 @@ late List Data;
           child: Column(
             children: <Widget>[
               Searchbar(size: size),
-              Container(
-                child: Positioned(
-                    child: Container(
-                  color: Colors.black,
-                  height: size.height * .7,
-                  child: ListView(),
-                )),
-              ),
+              Listview(size: size, data: data),
               Bottombar(
                 size: size,
               )
             ],
           ),
         ));
+  }
+}
+
+class Listview extends StatelessWidget {
+  const Listview({
+    Key? key,
+    required this.size,
+    required this.data,
+  }) : super(key: key);
+
+  final Size size;
+  final List data;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+         padding: EdgeInsets.only(
+           left: 20,
+           right: 20,
+           bottom: 5,
+         ),
+         color: Colors.black,
+         height: size.height * .7,
+         child: ListView.builder(
+           itemCount: data == null ? 0 : data.length,
+           itemBuilder: (BuildContext context, int index) {
+             return new Card(
+               color: Colors.black,
+               child: InkWell(
+                   onTap: () {
+                     if (index == 0) {
+                       Navigator.push(
+                           context,
+                           MaterialPageRoute(
+                               builder: (context) => Essentials()));
+                     } else if (index == 1) {
+                       Navigator.push(
+                           context,
+                           MaterialPageRoute(
+                               builder: (context) => Academic()));
+                     }
+                   },
+                   child: Column(children: [
+                     Padding(padding: EdgeInsets.all(5.0)),
+                     Row(
+                       mainAxisAlignment:
+                           MainAxisAlignment.spaceBetween,
+                       children: [
+                         Text(
+                           data[index]["name"],
+                           style: TextStyle(color: Colors.green),
+                         ),
+                         Text(
+                           data[index]["description"],
+                           style: TextStyle(
+                               color: Colors.white, fontSize: 22),
+                         ),
+                       ],
+                     ),
+                     SizedBox(
+                       height: 220,
+                       child: Container(
+                           decoration: BoxDecoration(
+                               color: Colors.white,
+                               border: Border.all(),
+                               borderRadius:
+                                   BorderRadius.circular(10.0)),
+                           child: ClipRRect(
+                             borderRadius: BorderRadius.circular(10.0),
+                             child: Image.network(
+                               data[index]["image"],
+                               fit: BoxFit.fill,
+                               width: size.width * 2,
+                             ),
+                           )),
+                     ),
+                   ])),
+             );
+           },
+         ),
+       );
   }
 }
 
