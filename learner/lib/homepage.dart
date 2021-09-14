@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:learner/academic.dart';
 import 'package:learner/essentials.dart';
+import 'package:learner/profile.dart';
 import 'package:learner/update.dart';
 
 import 'login.dart';
@@ -102,10 +103,7 @@ class Listview extends StatelessWidget {
                child: InkWell(
                    onTap: () {
                      if (index == 0) {
-                       Navigator.push(
-                           context,
-                           MaterialPageRoute(
-                               builder: (context) => Essentials()));
+                       Essentials();
                      } else if (index == 1) {
                        Navigator.push(
                            context,
@@ -234,12 +232,20 @@ class Searchbar extends StatelessWidget {
                   width: 40,
                   height: 40,
                 ),
-                CircleAvatar(
-                  radius: 35.0,
-                  backgroundImage: NetworkImage(
-                      "https://i2.wp.com/theworldaccordingtocosmos.com/wp-content/uploads/2019/11/landscape-1500925839-golden-retriever-puppy.jpg?w=480&ssl=1"),
-                  backgroundColor: Colors.transparent,
-                ),
+                GestureDetector(
+                  onTap: (
+                  ){Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) => Profile()));
+
+                  },
+                  child: CircleAvatar(
+                    radius: 35.0,
+                    backgroundImage: NetworkImage(
+                        "https://i2.wp.com/theworldaccordingtocosmos.com/wp-content/uploads/2019/11/landscape-1500925839-golden-retriever-puppy.jpg?w=480&ssl=1"),
+                    backgroundColor: Colors.transparent,
+                  ),
+                )
+
               ],
             ),
           ),

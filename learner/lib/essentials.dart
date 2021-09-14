@@ -52,7 +52,7 @@ class _EssentialsState extends State<Essentials> {
                   right: 20,
                 ),
                 color: Colors.black,
-                height: size.height * .92,
+                height: size.height * .9,
                 child: ListView.builder(
                   itemCount: data == null ? 0 : data.length,
                   itemBuilder: (BuildContext context, int index) {
