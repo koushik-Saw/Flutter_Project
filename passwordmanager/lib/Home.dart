@@ -59,9 +59,9 @@ class _BottomNavigationState extends State<BottomNavigation> {
         onTap: ontaped,
         currentIndex: indexno,
         items: [
-          BottomNavigationBarItem(icon: new Icon(Icons.home), label: "Home"),
-          BottomNavigationBarItem(icon: new Icon(Icons.add), label: "Add"),
-          BottomNavigationBarItem(icon: new Icon(Icons.print), label: "Update")
+          BottomNavigationBarItem(icon: new Icon(Icons.home), ),
+          BottomNavigationBarItem(icon: new Icon(Icons.add), ),
+          BottomNavigationBarItem(icon: new Icon(Icons.print),)
         ],
       ),
     );

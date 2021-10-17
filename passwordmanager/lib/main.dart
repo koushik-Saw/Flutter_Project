@@ -14,7 +14,7 @@ void main() async {
   runApp(
     MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(primarySwatch: Colors.brown),
+      theme: ThemeData(primarySwatch: Colors.cyan),
       home: Splashscreen(),
     ),
   );
