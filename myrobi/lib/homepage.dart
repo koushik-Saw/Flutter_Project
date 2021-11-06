@@ -382,7 +382,7 @@ class items extends StatelessWidget {
               onPressed: () {},
               icon: icns,color: Colors.lightGreen,
             ),
-            Text(titles,style: const TextStyle(fontSize: 18),),
+            Text(titles,style: const TextStyle(fontSize: 12),),
 
           ],
         )
