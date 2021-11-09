@@ -1,5 +1,6 @@
 
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:passwordmanager/Home.dart';
 import 'package:passwordmanager/user.dart';
@@ -129,6 +130,7 @@ class _loginState extends State<login> {
 
 
   Future signin() async {
+    await Firebase.initializeApp();
     try {
       final UserCredential authResult = await auth.signInWithEmailAndPassword(
           email: _email, password: _password);
