@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:passwordmanager/login.dart';
 
-import 'Home.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
