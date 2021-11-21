@@ -186,9 +186,7 @@ class _AddState extends State<Add> {
                 ElevatedButton(
                     style: ElevatedButton.styleFrom(primary: Colors.green),
                     onPressed: () {
-                      FirebaseFirestore.instance
-                          .collection('data')
-                          .add({"CompanyName": "Company name"});
+                      savepassword();
                     },
                     child: Text("Add")),
               ],

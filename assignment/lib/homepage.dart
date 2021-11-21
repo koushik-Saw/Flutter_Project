@@ -452,7 +452,7 @@ class Allres extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: size.width * 2,
+      width: size.width * 1,
       decoration: const BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.all(Radius.circular(10.0))),
@@ -464,8 +464,8 @@ class Allres extends StatelessWidget {
             child: Image.network(
               imgg,
               fit: BoxFit.fill,
-              width: 80,
-              height: 80,
+              width: 45,
+              height: 45,
             ),
           ),
           Padding(
