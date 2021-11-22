@@ -18,7 +18,7 @@ class _SplashscreenState extends State<Splashscreen> {
     super.initState();
     Timer(
         const Duration(seconds: 1),
-            () => Navigator.push(
+            () => Navigator.pushReplacement(
             context, MaterialPageRoute(builder: (context) => const Welcome())));
   }
   @override
