@@ -33,122 +33,127 @@ class _SignUpState extends State<SignUp> {
       body: Padding(
         padding: const EdgeInsets.all(20.0),
         child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const Text(
-                "Create Account",
-                style: TextStyle(
-                    color: Color(0xff04475f),
-                    fontSize: 22,
-                    fontWeight: FontWeight.bold),
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              const Text(
-                "Enter Your Phone number or Email to sign in. Enjoy your food",
-                style: TextStyle(
-                    color: Color(0xff04597b),
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold),
-              ),const SizedBox(
-                height: 18,
-              ),
-              TextFormField(
-                decoration: InputDecoration(
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(16))),
-                style: const TextStyle(fontSize: 22),
-              ),
-              const SizedBox(
-                height: 18,
-              ),
-              TextFormField(
-                decoration: InputDecoration(
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(16))),
-                style: const TextStyle(fontSize: 22),
-              ),
-              const SizedBox(
-                height: 18,
-              ),
-              TextField(
-                obscureText: !hidePassword,
-                decoration: InputDecoration(
-                    suffixIcon: IconButton(
-                      icon: hidePassword
-                          ? const Icon(Icons.visibility_off)
-                          : const Icon(Icons.visibility),
-                      onPressed: () {
-                        setState(() {
-                          hidePassword = !hidePassword;
-                        });
-                      },
-                    ),
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(16))),
-                style: const TextStyle(fontSize: 22),
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => const SignUp()));
-                },
-                child: const Text(
-                  "Sign Up",
-                  style: TextStyle(fontSize: 26),
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Text(
+                  "Create Account",
+                  style: TextStyle(
+                      color: Color(0xff04475f),
+                      fontSize: 22,
+                      fontWeight: FontWeight.bold),
                 ),
-                style: ElevatedButton.styleFrom(
-                  primary: const Color(0xFF00D1266),
-                  minimumSize: const Size(double.infinity, 60.00),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(15.0),
+                const SizedBox(
+                  height: 10,
+                ),
+                const Text(
+                  "Enter Your Phone number or Email to sign in. Enjoy your food",
+                  style: TextStyle(
+                      color: Color(0xff04597b),
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold),
+                ),const SizedBox(
+                  height: 18,
+                ),
+                TextFormField(
+                  decoration: InputDecoration(
+                      hintText: "Enter Your Username",
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(16))),
+                  style: const TextStyle(fontSize: 22),
+                ),
+                const SizedBox(
+                  height: 18,
+                ),
+                TextFormField(
+                  decoration: InputDecoration(
+                      hintText: "Enter Your Email",
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(16))),
+                  style: const TextStyle(fontSize: 22),
+                ),
+                const SizedBox(
+                  height: 18,
+                ),
+                TextField(
+                  obscureText: !hidePassword,
+                  decoration: InputDecoration(
+                      hintText: "Enter Your Password",
+                      suffixIcon: IconButton(
+                        icon: hidePassword
+                            ? const Icon(Icons.visibility_off)
+                            : const Icon(Icons.visibility),
+                        onPressed: () {
+                          setState(() {
+                            hidePassword = !hidePassword;
+                          });
+                        },
+                      ),
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(16))),
+                  style: const TextStyle(fontSize: 22),
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => const SignUp()));
+                  },
+                  child: const Text(
+                    "Sign Up",
+                    style: TextStyle(fontSize: 26),
+                  ),
+                  style: ElevatedButton.styleFrom(
+                    primary: const Color(0xFF00D1266),
+                    minimumSize: const Size(double.infinity, 60.00),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15.0),
+                    ),
                   ),
                 ),
-              ),
-              const SizedBox(
-                height: 20,
-              ),
+                const SizedBox(
+                  height: 20,
+                ),
 
-              const Center(child: Text("OR")),
-              const SizedBox(
-                height: 20,
-              ),
-              SignInButtonBuilder(
-                width: double.infinity,
-                height: 60.00,
-                image: Image.asset(
-                  "asset/facebook.png",
-                  width: 40,
-                  height: 30,
+                const Center(child: Text("OR")),
+                const SizedBox(
+                  height: 20,
                 ),
-                onPressed: () {},
-                backgroundColor: const Color(0xff53a0f4),
-                text: 'Connect With Facebook',
-                fontSize: 20,
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              SignInButtonBuilder(
-                width: double.infinity,
-                height: 60.00,
-                image: Image.asset(
-                  "asset/google.png",
-                  width: 40,
-                  height: 30,
+                SignInButtonBuilder(
+                  width: double.infinity,
+                  height: 60.00,
+                  image: Image.asset(
+                    "asset/facebook.png",
+                    width: 40,
+                    height: 30,
+                  ),
+                  onPressed: () {},
+                  backgroundColor: const Color(0xff53a0f4),
+                  text: 'Connect With Facebook',
+                  fontSize: 20,
                 ),
-                onPressed: () {},
-                backgroundColor: const Color(0xff53a0f4),
-                text: 'Connect With Google',
-                fontSize: 20,
-              ),
-            ],
+                const SizedBox(
+                  height: 20,
+                ),
+                SignInButtonBuilder(
+                  width: double.infinity,
+                  height: 60.00,
+                  image: Image.asset(
+                    "asset/google.png",
+                    width: 40,
+                    height: 30,
+                  ),
+                  onPressed: () {},
+                  backgroundColor: const Color(0xff53a0f4),
+                  text: 'Connect With Google',
+                  fontSize: 20,
+                ),
+              ],
+            ),
           ),
         ),
       ),

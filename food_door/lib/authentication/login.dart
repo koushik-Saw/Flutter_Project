@@ -5,6 +5,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_signin_button/button_builder.dart';
 import 'package:flutter_switch/flutter_switch.dart';
 import 'package:food_door/authentication/forgotpassword.dart';
+import 'package:food_door/authentication/phonelogin.dart';
 import 'package:food_door/authentication/signup.dart';
 
 class Login extends StatefulWidget {
@@ -67,6 +68,7 @@ class _LoginState extends State<Login> {
                 ),
                 TextFormField(
                   decoration: InputDecoration(
+                      hintText: "Enter Your Email",
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(16))),
                   style: const TextStyle(fontSize: 22),
@@ -77,6 +79,7 @@ class _LoginState extends State<Login> {
                 TextField(
                   obscureText: !hidePassword,
                   decoration: InputDecoration(
+                      hintText: "Enter Your Password",
                       suffixIcon: IconButton(
                         icon: hidePassword
                             ? const Icon(Icons.visibility_off)
@@ -178,7 +181,7 @@ class _LoginState extends State<Login> {
                 ),
                 SignInButtonBuilder(
                   width: double.infinity,
-                  height: 80.00,
+                  height: 60.00,
                   image: Image.asset(
                     "asset/facebook.png",
                     width: 40,
@@ -194,7 +197,7 @@ class _LoginState extends State<Login> {
                 ),
                 SignInButtonBuilder(
                   width: double.infinity,
-                  height: 80.00,
+                  height: 60.00,
                   image: Image.asset(
                     "asset/google.png",
                     width: 40,
@@ -203,6 +206,27 @@ class _LoginState extends State<Login> {
                   onPressed: () {},
                   backgroundColor: const Color(0xff53a0f4),
                   text: 'Connect With Google',
+                  fontSize: 26,
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                SignInButtonBuilder(
+                  width: double.infinity,
+                  height: 60.00,
+                  image: Image.asset(
+                    "asset/phone.png",
+                    width: 40,
+                    height: 40,
+                  ),
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const Phonelogin()));
+                  },
+                  backgroundColor: const Color(0xff53a0f4),
+                  text: 'Sign In Phone',
                   fontSize: 26,
                 ),
               ],
