@@ -32,7 +32,7 @@ class _AccountState extends State<Account> {
           "Profile",
           style: TextStyle(color: Colors.white),
         ),
-        backgroundColor: const Color(0xff04475f),
+        backgroundColor: const Color(0xfff15a24),
         elevation: 0,
         centerTitle: true,
         actions: [
@@ -52,7 +52,7 @@ class _AccountState extends State<Account> {
                   clipper: CustomShape(),
                   child: Container(
                     height: size.height * .25,
-                    color: const Color(0xff04475f),
+                    color: const Color(0xfff15a24),
                     child: Padding(
                       padding: const EdgeInsets.all(20.0),
                       child: Row(
@@ -121,18 +121,18 @@ class _AccountState extends State<Account> {
                           icons: Icon(
                             Icons.local_shipping,
                           ),
-                          title: "My Order",
+                          title: "My Order",clr: Colors.black,
                         ),
                         Bottomtextbutton(
                             icons: Icon(
                               Icons.redeem,
                             ),
-                            title: "Offers & Promos"),
+                            title: "Offers & Promos",clr: Colors.black,),
                         Bottomtextbutton(
                             icons: Icon(
                               Icons.room,
                             ),
-                            title: "Delivery Address")
+                            title: "Delivery Address",clr: Colors.black,)
                       ],
                     ),
                   ),
@@ -200,7 +200,7 @@ class _AccountState extends State<Account> {
                         wiz: FlutterSwitch(
                           padding: 3,
                           toggleColor: const Color.fromRGBO(255, 255, 255, 1.0),
-                          activeColor: const Color(0xFF0D1266),
+                          activeColor: const Color(0xFFF15A24),
                           inactiveColor: Colors.black,
                           toggleSize: 18.0,
                           height: 25,
@@ -220,7 +220,7 @@ class _AccountState extends State<Account> {
                         listtitle: "Payment", wiz: FlutterSwitch(
                         padding: 3,
                         toggleColor: const Color.fromRGBO(255, 255, 255, 1.0),
-                        activeColor: const Color(0xFF0D1266),
+                        activeColor: const Color(0xFFF15A24),
                         inactiveColor: Colors.black,
                         toggleSize: 18.0,
                         height: 25,

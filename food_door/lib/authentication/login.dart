@@ -105,7 +105,7 @@ class _LoginState extends State<Login> {
                         FlutterSwitch(
                           padding: 3,
                           toggleColor: const Color.fromRGBO(255, 255, 255, 1.0),
-                          activeColor: const Color(0xFF0D1266),
+                          activeColor: const Color(0xFFF15A24),
                           inactiveColor: Colors.black,
                           toggleSize: 18.0,
                           height: 25,
@@ -139,16 +139,18 @@ class _LoginState extends State<Login> {
                 ),
                 ElevatedButton(
                   onPressed: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => const SignUp()));
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const SignUp()));
                   },
                   child: const Text(
                     "Sign In",
                     style: TextStyle(fontSize: 26),
                   ),
                   style: ElevatedButton.styleFrom(
-                    primary: const Color(0xFF00D1266),
-                    minimumSize: const Size(double.infinity, 80.00),
+                    primary: const Color(0xFFF15A24),
+                    minimumSize: const Size(double.infinity, 60.00),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(15.0),
                     ),
@@ -179,56 +181,58 @@ class _LoginState extends State<Login> {
                 const SizedBox(
                   height: 20,
                 ),
-                SignInButtonBuilder(
-                  width: double.infinity,
-                  height: 60.00,
-                  image: Image.asset(
-                    "asset/facebook.png",
-                    width: 40,
-                    height: 40,
-                  ),
-                  onPressed: () {},
-                  backgroundColor: const Color(0xff53a0f4),
-                  text: 'Connect With Facebook',
-                  fontSize: 26,
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                SignInButtonBuilder(
-                  width: double.infinity,
-                  height: 60.00,
-                  image: Image.asset(
-                    "asset/google.png",
-                    width: 40,
-                    height: 40,
-                  ),
-                  onPressed: () {},
-                  backgroundColor: const Color(0xff53a0f4),
-                  text: 'Connect With Google',
-                  fontSize: 26,
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                SignInButtonBuilder(
-                  width: double.infinity,
-                  height: 60.00,
-                  image: Image.asset(
-                    "asset/phone.png",
-                    width: 40,
-                    height: 40,
-                  ),
-                  onPressed: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const Phonelogin()));
-                  },
-                  backgroundColor: const Color(0xff53a0f4),
-                  text: 'Sign In Phone',
-                  fontSize: 26,
-                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    SignInButtonBuilder(
+                      width: 30.00,
+                      height: 50.00,
+                      mini: true,
+                      image: Image.asset(
+                        "asset/facebook.png",
+                        width: 40,
+                        height: 40,
+                      ),
+                      onPressed: () {},
+                      backgroundColor: const Color(0xffffffff),
+                      text: '',
+                      fontSize: 26,
+                    ),
+                    SignInButtonBuilder(
+                      width: 30.00,
+                      height: 50.00,
+                      mini: true,
+                      image: Image.asset(
+                        "asset/google.png",
+                        width: 40,
+                        height: 40,
+                      ),
+                      onPressed: () {},
+                      fontSize: 26,
+                      text: '',
+                      backgroundColor: const Color(0xffffffff),
+                    ),
+                    SignInButtonBuilder(
+                      width: 30.00,
+                      height: 50.00,
+                      mini: true,
+                      image: Image.asset(
+                        "asset/phone.png",
+                        width: 40,
+                        height: 40,
+                      ),
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const Phonelogin()));
+                      },
+                      backgroundColor: const Color(0xffffffff),
+                      text: '',
+                      fontSize: 26,
+                    ),
+                  ],
+                )
               ],
             ),
           ),

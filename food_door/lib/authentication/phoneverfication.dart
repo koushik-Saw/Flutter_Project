@@ -129,8 +129,8 @@ class _PhoneverificationState extends State<Phoneverification> {
                   style: TextStyle(fontSize: 26),
                 ),
                 style: ElevatedButton.styleFrom(
-                  primary: const Color(0xff00d1266),
-                  minimumSize: const Size(double.infinity, 80.00),
+                  primary: const Color(0xFFF15A24),
+                  minimumSize: const Size(double.infinity, 60.00),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(15.0),
                   ),

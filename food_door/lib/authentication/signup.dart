@@ -108,7 +108,7 @@ class _SignUpState extends State<SignUp> {
                     style: TextStyle(fontSize: 26),
                   ),
                   style: ElevatedButton.styleFrom(
-                    primary: const Color(0xFF00D1266),
+                    primary: const Color(0xFFF15A24),
                     minimumSize: const Size(double.infinity, 60.00),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(15.0),
@@ -123,35 +123,39 @@ class _SignUpState extends State<SignUp> {
                 const SizedBox(
                   height: 20,
                 ),
-                SignInButtonBuilder(
-                  width: double.infinity,
-                  height: 60.00,
-                  image: Image.asset(
-                    "asset/facebook.png",
-                    width: 40,
-                    height: 30,
-                  ),
-                  onPressed: () {},
-                  backgroundColor: const Color(0xff53a0f4),
-                  text: 'Connect With Facebook',
-                  fontSize: 20,
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                SignInButtonBuilder(
-                  width: double.infinity,
-                  height: 60.00,
-                  image: Image.asset(
-                    "asset/google.png",
-                    width: 40,
-                    height: 30,
-                  ),
-                  onPressed: () {},
-                  backgroundColor: const Color(0xff53a0f4),
-                  text: 'Connect With Google',
-                  fontSize: 20,
-                ),
+               Row(
+                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                 children: [
+                   SignInButtonBuilder(
+                     width: 30.00,
+                     height: 50.00,
+                     mini: true,
+                     image: Image.asset(
+                       "asset/facebook.png",
+                       width: 40,
+                       height: 40,
+                     ),
+                     onPressed: () {},
+                     backgroundColor: const Color(0xffffffff),
+                     text: '',
+                     fontSize: 26,
+                   ),
+                   SignInButtonBuilder(
+                     width: 30.00,
+                     height: 50.00,
+                     mini: true,
+                     image: Image.asset(
+                       "asset/google.png",
+                       width: 40,
+                       height: 40,
+                     ),
+                     onPressed: () {},
+                     fontSize: 26,
+                     text: '',
+                     backgroundColor: const Color(0xffffffff),
+                   ),
+                 ],
+               )
               ],
             ),
           ),

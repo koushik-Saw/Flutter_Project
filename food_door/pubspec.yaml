@@ -33,6 +33,7 @@ dependencies:
   flutter_signin_button: ^2.0.0
   intl_phone_field: ^2.1.0
   otp_text_field: ^1.1.1
+  url_launcher: ^6.0.15
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
