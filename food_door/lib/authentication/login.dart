@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -7,6 +8,8 @@ import 'package:flutter_switch/flutter_switch.dart';
 import 'package:food_door/authentication/forgotpassword.dart';
 import 'package:food_door/authentication/phonelogin.dart';
 import 'package:food_door/authentication/signup.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:food_door/model/bottomnavibar.dart';
 
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
@@ -18,6 +21,8 @@ class Login extends StatefulWidget {
 class _LoginState extends State<Login> {
   bool hidePassword = false;
   bool isSwitchOn = false;
+  String _email = "", _password = "";
+  final auth = FirebaseAuth.instance;
 
   @override
   Widget build(BuildContext context) {
@@ -67,6 +72,11 @@ class _LoginState extends State<Login> {
                   height: 18,
                 ),
                 TextFormField(
+                  onChanged: (value){
+                    setState(() {
+                      _email = value.trim();
+                    });
+                  },
                   decoration: InputDecoration(
                       hintText: "Enter Your Email",
                       border: OutlineInputBorder(
@@ -77,6 +87,11 @@ class _LoginState extends State<Login> {
                   height: 18,
                 ),
                 TextField(
+                  onChanged: (value){
+                    setState(() {
+                      _password = value.trim();
+                    });
+                  },
                   obscureText: !hidePassword,
                   decoration: InputDecoration(
                       hintText: "Enter Your Password",
@@ -138,11 +153,9 @@ class _LoginState extends State<Login> {
                   height: 20,
                 ),
                 ElevatedButton(
-                  onPressed: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const SignUp()));
+                  onPressed:
+                      () {
+                        Signin();
                   },
                   child: const Text(
                     "Sign In",
@@ -240,4 +253,27 @@ class _LoginState extends State<Login> {
       ),
     );
   }
+
+  Future Signin() async{
+    await Firebase.initializeApp();
+    try{
+      final UserCredential authResult = await auth.signInWithEmailAndPassword(
+          email: _email, password: _password);
+      final User? user = authResult.user;
+
+      if (user != null) {
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => const Bottomnav()));
+      } else {
+        print('No user found for that email.');
+      }
+  }on FirebaseAuthException catch(e){
+      if (e.code == 'user-not-found') {
+        print('No user found for that email.');
+      } else if (e.code == 'wrong-password') {
+        print('No user found for that email.');
+      }
+    }
+
+    }
 }

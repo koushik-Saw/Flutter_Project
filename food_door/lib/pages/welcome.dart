@@ -31,7 +31,7 @@ class _WelcomeState extends State<Welcome> {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => const Bottomnav()));
+                        builder: (context) => const Login()));
               },
               child: const Text(
                 "Welcome",

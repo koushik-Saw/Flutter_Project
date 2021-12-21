@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "164041668813",
+    "project_id": "food-door-7ba9d",
+    "storage_bucket": "food-door-7ba9d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:164041668813:android:d2732adff3b9fe1f4a1184",
+        "android_client_info": {
+          "package_name": "com.example.food_door"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "164041668813-f70mesk9kumfft1bnni4q0cgfk7g5roa.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.food_door",
+            "certificate_hash": "826c1cd07984e4b8423f6dcfc734a426230873a6"
+          }
+        },
+        {
+          "client_id": "164041668813-9umbpibs57slks9i5m07tqd048u8okqs.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAdG0fJ9_HdN8l7TWrLKRKsBUS8dR8XYK4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "164041668813-9umbpibs57slks9i5m07tqd048u8okqs.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

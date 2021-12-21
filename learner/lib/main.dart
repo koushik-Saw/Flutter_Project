@@ -3,11 +3,7 @@ import 'dart:async';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:learner/essentials.dart';
 import 'package:learner/homepage.dart';
-import 'package:learner/login.dart';
-import 'package:learner/profile.dart';
-import 'package:provider/provider.dart';
 
 void main() {
   runApp(
