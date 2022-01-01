@@ -196,7 +196,40 @@ class _HomepageState extends State<Homepage> with TickerProviderStateMixin {
                             ],
                           ),
                         ),
-                      )
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: const [
+                          Text("Order Again"),
+                          Text("See All"),
+                        ],
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      Container(
+                        color: const Color(0xffc2c2cb),
+                        height: 200,
+                        child: SingleChildScrollView(
+                          scrollDirection: Axis.horizontal,
+                          child: Row(
+                            children: const [
+                              Favourites(),
+                              SizedBox(
+                                width: 10,
+                              ),
+                              Favourites(),
+                              SizedBox(
+                                width: 10,
+                              ),
+                              Favourites()
+                            ],
+                          ),
+                        ),
+                      ),
                     ],
                   ),
                 ),
