@@ -1,16 +1,26 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_signin_button/button_builder.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:food_door/authentication/login.dart';
+import 'package:food_door/pages/welcome.dart';
 
 class SignUp extends StatefulWidget {
   const SignUp({Key? key}) : super(key: key);
-
   @override
   _SignUpState createState() => _SignUpState();
 }
 
 class _SignUpState extends State<SignUp> {
   bool hidePassword = false;
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  get user => _auth.currentUser;
+  
+  final _signupusercontroller = new TextEditingController();
+  final _signupemailcontroller = new TextEditingController();
+  final _signuppasswordcontroller = new TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -58,6 +68,7 @@ class _SignUpState extends State<SignUp> {
                   height: 18,
                 ),
                 TextFormField(
+                  controller: _signupusercontroller,
                   decoration: InputDecoration(
                       hintText: "Enter Your Username",
                       border: OutlineInputBorder(
@@ -68,6 +79,7 @@ class _SignUpState extends State<SignUp> {
                   height: 18,
                 ),
                 TextFormField(
+                  controller: _signupemailcontroller,
                   decoration: InputDecoration(
                       hintText: "Enter Your Email",
                       border: OutlineInputBorder(
@@ -79,6 +91,7 @@ class _SignUpState extends State<SignUp> {
                 ),
                 TextField(
                   obscureText: !hidePassword,
+                  controller: _signuppasswordcontroller,
                   decoration: InputDecoration(
                       hintText: "Enter Your Password",
                       suffixIcon: IconButton(
@@ -100,8 +113,25 @@ class _SignUpState extends State<SignUp> {
                 ),
                 ElevatedButton(
                   onPressed: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => const SignUp()));
+                    final signupemail = _signupemailcontroller.text;
+                    final signuppassword = _signuppasswordcontroller.text;
+                    final signupuser = _signupusercontroller.text;
+                    String phone = "+880";
+                    signUp(email: signupemail, password: signuppassword).then((result) {
+                      if (result == null) {
+                        FirebaseFirestore.instance.collection("accounts").doc(signupuser).set({
+                          "Username": signupuser,
+                          "Email": signupemail,
+                          "Phone": phone,
+                        });
+                        Navigator.pushReplacement(context,
+                            MaterialPageRoute(builder: (context) => Login()));
+                      } else {
+                        Navigator.push(
+                            context, MaterialPageRoute(builder: (context) => const Welcome()));
+                      }
+                    });
+
                   },
                   child: const Text(
                     "Sign Up",
@@ -162,5 +192,17 @@ class _SignUpState extends State<SignUp> {
         ),
       ),
     );
+  }
+
+  Future signUp({required String email, required String password}) async {
+    try {
+      await _auth.createUserWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+      return null;
+    } on FirebaseAuthException catch (e) {
+      return e.message;
+    }
   }
 }
