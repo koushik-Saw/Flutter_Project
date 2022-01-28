@@ -1,4 +1,7 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:food_door/model/searchbar.dart';
 
 import 'account.dart';
@@ -11,6 +14,24 @@ class Homepage extends StatefulWidget {
 }
 
 class _HomepageState extends State<Homepage> with TickerProviderStateMixin {
+
+  List recent = [];
+
+  Future<String> getRecent() async {
+    var response = await rootBundle.loadString('asset/jsonfiles/recent.json');
+    setState(() {
+      var extract = json.decode(response);
+      recent = extract["recent"];
+    });
+    return "Success!";
+  }
+  @override
+  void initState() {
+    super.initState();
+    getRecent();
+  }
+
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -101,102 +122,17 @@ class _HomepageState extends State<Homepage> with TickerProviderStateMixin {
                           ),
                         ),
                       ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: const [
+                          Text("All Restuarents",),
+                          Text("Clear All"),
+                        ],
+                      ),
                       const SizedBox(
                         height: 10,
                       ),
-                      Container(
-                        color: Colors.white,
-                        height: 50,
-                        child: TabBar(
-                            labelColor: Colors.black,
-                            indicatorColor: const Color(0xfff15a24),
-                            labelStyle: const TextStyle(
-                                fontSize: 14.0, color: Colors.black),
-                            //For Selected tab
-                            unselectedLabelStyle: const TextStyle(
-                                fontSize: 10.0, color: Colors.black),
-                            controller: _controller,
-                            tabs: const [
-                              Tab(
-                                text: "Recent",
-                              ),
-                              Tab(
-                                text: 'Favourite',
-                              ),
-                              Tab(
-                                text: 'Rating',
-                              ),
-                              Tab(
-                                text: 'Popular',
-                              ),
-                              Tab(
-                                text: 'Trending',
-                              ),
-                            ]),
-                      ),
-                      Container(
-                        height: 350,
-                        color: Colors.black,
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: ListView(
-                            children: const [
-                              recent(
-                                storename: "Burger King",
-                                itemname: "Burger",
-                                storedistance: "2.1km",
-                                storeratting: "5.0",
-                                timetoreach: "30min",
-                                contact: "Contact",
-                              ),
-                              SizedBox(
-                                height: 7,
-                              ),
-                              recent(
-                                storename: "Burger King",
-                                itemname: "Burger",
-                                storedistance: "2.1km",
-                                storeratting: "5.0",
-                                timetoreach: "30min",
-                                contact: "Contact",
-                              ),
-                              SizedBox(
-                                height: 7,
-                              ),
-                              recent(
-                                storename: "Burger King",
-                                itemname: "Burger",
-                                storedistance: "2.1km",
-                                storeratting: "5.0",
-                                timetoreach: "30min",
-                                contact: "Contact",
-                              ),
-                              SizedBox(
-                                height: 7,
-                              ),
-                              recent(
-                                storename: "Burger King",
-                                itemname: "Burger",
-                                storedistance: "2.1km",
-                                storeratting: "5.0",
-                                timetoreach: "30min",
-                                contact: "Contact",
-                              ),
-                              SizedBox(
-                                height: 7,
-                              ),
-                              recent(
-                                storename: "Burger King",
-                                itemname: "Burger",
-                                storedistance: "2.1km",
-                                storeratting: "5.0",
-                                timetoreach: "30min",
-                                contact: "Contact",
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
+                      RecentRes(recent: recent),
                       const SizedBox(
                         height: 10,
                       ),
@@ -242,118 +178,105 @@ class _HomepageState extends State<Homepage> with TickerProviderStateMixin {
   }
 }
 
-class recent extends StatelessWidget {
-  const recent({
+class RecentRes extends StatelessWidget {
+  const RecentRes({
     Key? key,
-    required this.storename,
-    required this.itemname,
-    required this.storedistance,
-    required this.storeratting,
-    required this.timetoreach,
-    required this.contact,
+    required this.recent,
   }) : super(key: key);
-  final String storename,
-      itemname,
-      storedistance,
-      storeratting,
-      timetoreach,
-      contact;
+
+  final List recent;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 100,
       color: Colors.white,
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Row(
-          children: [
-            ClipRRect(
-                borderRadius: const BorderRadius.all(Radius.circular(15.0)),
-                child: Image.network(
-                  "https://images.unsplash.com/photo-1626229652216-e5bb7f511917?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80",
-                  width: 100,
-                  height: 80,
-                  fit: BoxFit.cover,
-                )),
-            const SizedBox(
-              width: 10,
-            ),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
+      height: 200,
+      child: ListView.builder(
+          itemCount: recent == null ? 0 : recent.length,
+          itemBuilder: (BuildContext context, int index){
+            return Card(
+              color: Colors.white,
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
                   children: [
-                    Text(storename),
+                    ClipRRect(
+                        borderRadius: const BorderRadius.all(Radius.circular(15.0)),
+                        child: Image.network(
+                          "https://images.unsplash.com/photo-1626229652216-e5bb7f511917?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80",
+                          width: 100,
+                          height: 80,
+                          fit: BoxFit.cover,
+                        )),
                     const SizedBox(
-                      width: 100,
+                      width: 10,
                     ),
-                    const Icon(
-                      Icons.bookmark,
-                      color: Color(0xfff15a24),
-                      size: 20,
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          children: [
+                            Text(recent[index]["name"]),
+                            const SizedBox(
+                              width: 100,
+                            ),
+                            const Icon(
+                              Icons.bookmark,
+                              color: Color(0xfff15a24),
+                              size: 20,
+                            )
+                          ],
+                        ),
+                        const SizedBox(
+                          height: 8,
+                        ),
+                        Row(
+                          children: [
+                            const Icon(
+                              Icons.bookmark,
+                              color: Color(0xfff15a24),
+                              size: 15,
+                            ),
+                            Text(recent[index]["type"]),
+                            const SizedBox(
+                              width: 20,
+                            ),
+                          ],
+                        ),
+                        const SizedBox(
+                          height: 8,
+                        ),
+                        Row(
+                          children: [
+                            const Icon(
+                              Icons.star_rate,
+                              color: Color(0xfff15a24),
+                              size: 15,
+                            ),
+                            Text(recent[index]["rating"]),
+                            const SizedBox(
+                              width: 20,
+                            ),
+                            const SizedBox(
+                              width: 20,
+                            ),
+                            const Icon(
+                              Icons.call,
+                              color: Color(0xff34bb6e),
+                              size: 15,
+                            ),
+                            Text(recent[index]["contact"]),
+                          ],
+                        )
+                      ],
                     )
                   ],
                 ),
-                const SizedBox(
-                  height: 8,
-                ),
-                Row(
-                  children: [
-                    const Icon(
-                      Icons.bookmark,
-                      color: Color(0xfff15a24),
-                      size: 15,
-                    ),
-                    Text(itemname),
-                    const SizedBox(
-                      width: 20,
-                    ),
-                    const Icon(
-                      Icons.place,
-                      color: Color(0xfff15a24),
-                      size: 15,
-                    ),
-                    Text(storedistance),
-                  ],
-                ),
-                const SizedBox(
-                  height: 8,
-                ),
-                Row(
-                  children: [
-                    const Icon(
-                      Icons.star_rate,
-                      color: Color(0xfff15a24),
-                      size: 15,
-                    ),
-                    Text(storeratting),
-                    const SizedBox(
-                      width: 20,
-                    ),
-                    const Icon(
-                      Icons.schedule,
-                      color: Color(0xff000000),
-                      size: 15,
-                    ),
-                    Text(timetoreach),
-                    const SizedBox(
-                      width: 20,
-                    ),
-                    const Icon(
-                      Icons.call,
-                      color: Color(0xff34bb6e),
-                      size: 15,
-                    ),
-                    Text(contact),
-                  ],
-                )
-              ],
-            )
-          ],
-        ),
-      ),
+              ),
+            );
+
+          }),
     );
   }
 }
