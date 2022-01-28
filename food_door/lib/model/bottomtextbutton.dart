@@ -6,7 +6,7 @@ class Bottomtextbutton extends StatelessWidget {
     Key? key, required this.icons, required this.title, required this.clr,
   }) : super(key: key);
 final Icon icons;
-final String title;
+final String? title;
 final Color clr;
   @override
   Widget build(BuildContext context) {
@@ -14,7 +14,7 @@ final Color clr;
       children: [
         IconButton(onPressed: (){}, icon: icons,
         ),
-        Text(title,style: TextStyle(color: clr),)
+        Text(title!,style: TextStyle(color: clr),)
       ],
     );
   }

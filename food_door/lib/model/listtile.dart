@@ -8,7 +8,7 @@ class listitle extends StatelessWidget {
     Key? key, required this.icn, required this.listtitle, required this.wiz,
   }) : super(key: key);
 final Icon icn;
-final String listtitle;
+final String? listtitle;
 final Widget wiz;
   @override
   Widget build(BuildContext context) {
@@ -23,7 +23,7 @@ final Widget wiz;
               const SizedBox(
                 width: 20,
               ),
-              Text(listtitle),
+              Text(listtitle!),
             ],
           ),
 

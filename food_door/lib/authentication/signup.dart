@@ -117,12 +117,16 @@ class _SignUpState extends State<SignUp> {
                     final signuppassword = _signuppasswordcontroller.text;
                     final signupuser = _signupusercontroller.text;
                     String phone = "+880";
+                    String gender = "undefined";
+                    String language = "Bangla";
                     signUp(email: signupemail, password: signuppassword).then((result) {
                       if (result == null) {
                         FirebaseFirestore.instance.collection("accounts").doc(signupuser).set({
                           "Username": signupuser,
                           "Email": signupemail,
                           "Phone": phone,
+                          "Gender": gender,
+                          "Language": language
                         });
                         Navigator.pushReplacement(context,
                             MaterialPageRoute(builder: (context) => Login()));
