@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:food_door/pages/checkout.dart';
@@ -8,8 +10,11 @@ class Cart extends StatefulWidget {
   @override
   _CartState createState() => _CartState();
 }
-
+List _alldata = [];
 class _CartState extends State<Cart> {
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  String? user = FirebaseAuth.instance.currentUser?.email;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -50,32 +55,19 @@ class _CartState extends State<Cart> {
               Container(
                   color: Colors.white,
                   height: 230,
-                  child: ListView(
-                    children: [
-                      ListTile(
-                        leading: Image.network(
-                          "https://images.unsplash.com/photo-1626229652216-e5bb7f511917?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80",
-                          width: 100,
-                          height: 80,
-                          fit: BoxFit.cover,
-                        ),
-                        title: Text("Burger"),
-                        subtitle: Text("30\$"),
-                        trailing: Text("2pc"),
-                      ),
-                      ListTile(
-                        leading: Image.network(
-                          "https://images.unsplash.com/photo-1626229652216-e5bb7f511917?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80",
-                          width: 100,
-                          height: 80,
-                          fit: BoxFit.cover,
-                        ),
-                        title: Text("Burger"),
-                        subtitle: Text("30\$"),
-                        trailing: Text("2pc"),
-                      ),
-                    ],
-                  )),
+                  child: StreamBuilder<QuerySnapshot>(
+                      stream: FirebaseFirestore.instance
+                          .collection(user!)
+                          .snapshots(),
+                      builder: (BuildContext context,
+                          AsyncSnapshot<QuerySnapshot> snapshot) {
+                        if (!snapshot.hasData) {
+                          return const Text("There is no expense");
+                        }
+                        return ListView(
+                          children: getExpenseItems(snapshot)
+                        );
+                      })),
               Container(
                 height: 60,
                 decoration: const BoxDecoration(
@@ -137,13 +129,12 @@ class _CartState extends State<Cart> {
                 height: 60,
                 decoration: const BoxDecoration(
                     border: Border(
-                      top: BorderSide(width: 0),
-                      bottom: BorderSide(width: 0),
-                    )),
+                  top: BorderSide(width: 0),
+                  bottom: BorderSide(width: 0),
+                )),
                 child: const ListTile(
                   title: Text("Total"),
-                  trailing:
-                  Text("\$70.00"),
+                  trailing: Text("\$70.00"),
                 ),
               ),
               Container(
@@ -161,10 +152,16 @@ class _CartState extends State<Cart> {
                 ),
               ),
               ElevatedButton(
-                onPressed:
-                    () {
-                      Navigator.push(
-                          context, MaterialPageRoute(builder: (context) => const Checkout()));
+                onPressed: () {
+                  // Navigator.push(
+                  //     context,
+                  //     MaterialPageRoute(
+                  //         builder: (context) => const Checkout()));
+                  FirebaseFirestore.instance.collection(user!).get().then((value){
+                    for(DocumentSnapshot ds in value.docs){
+                      ds.reference.delete();
+                    }
+                  });
                 },
                 child: const Text(
                   "Check Out",
@@ -183,5 +180,23 @@ class _CartState extends State<Cart> {
         ),
       ),
     );
+  }
+
+  getExpenseItems(AsyncSnapshot<QuerySnapshot> snapshot) {
+    return _alldata = snapshot.data!.docs
+        .map((doc) =>
+        Card(
+          child: ListTile(
+            leading: Image.network(
+              "https://images.unsplash.com/photo-1626229652216-e5bb7f511917?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80",
+              width: 100,
+              height: 80,
+              fit: BoxFit.cover,
+            ),
+            title: Text(doc["Item name"]),
+            subtitle: Text(doc["Item Price"]),
+            trailing:  Text(doc["Item Quantity"]),
+          ),
+        )).toList();
   }
 }

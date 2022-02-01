@@ -133,22 +133,22 @@ class _AccountState extends State<Account> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children:  [
-                            const Bottomtextbutton(
-                              icons: Icon(
+                            Bottomtextbutton(
+                              icons: const Icon(
                                 Icons.local_shipping,
                               ),
-                              title: "My Order",clr: Colors.black,
+                              title: "My Order",clr: Colors.black,callback: (){},
                             ),
-                            const Bottomtextbutton(
-                              icons: Icon(
+                             Bottomtextbutton(
+                              icons: const Icon(
                                 Icons.redeem,
                               ),
-                              title: "Offers & Promos",clr: Colors.black,),
+                              title: "Offers & Promos",clr: Colors.black,callback: (){}),
                             Bottomtextbutton(
                               icons: const Icon(
                                 Icons.room,
                               ),
-                              title: snapshot.data!['deliveryadd'],clr: Colors.black,)
+                              title: snapshot.data!['Delivery Address'],clr: Colors.black,callback: (){})
                           ],
                         ),
                       ),

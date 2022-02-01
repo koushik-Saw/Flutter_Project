@@ -1,0 +1,24 @@
+{
+  "items": [
+    {
+      "icon": "Listening",
+      "name": "Kacci Biriyani",
+      "type":"Lunch",
+      "price":"Price: 250tk",
+      "ratio":"Ratio: 1:1"
+    },
+  {
+      "icon": "Listening",
+      "name": "Kacci Biriyani",
+      "type":"Lunch",
+      "price":"Price: 499tk",
+      "ratio":"Ratio: 2:1"
+    },{
+      "icon": "Listening",
+      "name": "Kacci Biriyani",
+      "type":"Lunch",
+      "price":"Price: 700tk",
+      "ratio":"Ratio: 3:1"
+    }
+  ]
+}

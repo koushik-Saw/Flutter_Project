@@ -119,14 +119,16 @@ class _SignUpState extends State<SignUp> {
                     String phone = "+880";
                     String gender = "undefined";
                     String language = "Bangla";
+                    String Deliveryadd = "None";
                     signUp(email: signupemail, password: signuppassword).then((result) {
                       if (result == null) {
-                        FirebaseFirestore.instance.collection("accounts").doc(signupuser).set({
+                        FirebaseFirestore.instance.collection("accounts").doc(signupemail).set({
                           "Username": signupuser,
                           "Email": signupemail,
                           "Phone": phone,
                           "Gender": gender,
-                          "Language": language
+                          "Language": language,
+                          "Delivery Address":Deliveryadd
                         });
                         Navigator.pushReplacement(context,
                             MaterialPageRoute(builder: (context) => Login()));

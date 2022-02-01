@@ -45,10 +45,10 @@ class _ManageprofileState extends State<Manageprofile> {
                 ),
                 listitle(icn: const Icon(Icons.person), listtitle: snapshot.data!['Username'], wiz: const Icon(Icons.edit_outlined,color: Color(0xFF0D1266))),
                 listitle(icn: const Icon(Icons.mail), listtitle: snapshot.data!['Email'], wiz: const Icon(Icons.edit_outlined,color: Color(0xFF0D1266))),
-                listitle(icn: const Icon(Icons.location_city), listtitle: snapshot.data!['deliveryadd'], wiz: const Icon(Icons.edit_outlined,color: Color(0xFF0D1266))),
-                listitle(icn: const Icon(Icons.person), listtitle: snapshot.data!['gender'], wiz: const Icon(Icons.edit_outlined,color: Color(0xFF0D1266))),
-                listitle(icn: const Icon(Icons.phone_android), listtitle: snapshot.data!['phone'], wiz: const Icon(Icons.edit_outlined,color: Color(0xFF0D1266))),
-                listitle(icn: const Icon(Icons.message), listtitle: snapshot.data!['language'], wiz: const Icon(Icons.edit_outlined,color: Color(0xFF0D1266))),
+                listitle(icn: const Icon(Icons.location_city), listtitle: snapshot.data!['Delivery Address'], wiz: const Icon(Icons.edit_outlined,color: Color(0xFF0D1266))),
+                listitle(icn: const Icon(Icons.person), listtitle: snapshot.data!['Gender'], wiz: const Icon(Icons.edit_outlined,color: Color(0xFF0D1266))),
+                listitle(icn: const Icon(Icons.phone_android), listtitle: snapshot.data!['Phone'], wiz: const Icon(Icons.edit_outlined,color: Color(0xFF0D1266))),
+                listitle(icn: const Icon(Icons.message), listtitle: snapshot.data!['Language'], wiz: const Icon(Icons.edit_outlined,color: Color(0xFF0D1266))),
               ],
             );
           }

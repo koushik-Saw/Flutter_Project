@@ -1,0 +1,24 @@
+{
+  "items": [
+    {
+      "icon": "Listening",
+      "name": "Parata",
+      "type":"BreakFast",
+      "price":"Price: 40tk",
+      "ratio":"Ratio: 4pc"
+    },
+    {
+      "icon": "Listening",
+      "name": "Egg Omlet",
+      "type":"BreakFast",
+      "price":"Price: 15tk",
+      "ratio":"Ratio: 1pc"
+    },{
+      "icon": "Listening",
+      "name": "Vegetable",
+      "type":"BreakFast",
+      "price":"Price: 20tk",
+      "ratio":"Ratio: 1bowl"
+    }
+  ]
+}
