@@ -26,7 +26,6 @@ final Widget wiz;
               Text(listtitle!),
             ],
           ),
-
           wiz
         ],
       ),

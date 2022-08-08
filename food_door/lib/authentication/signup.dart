@@ -211,4 +211,5 @@ class _SignUpState extends State<SignUp> {
       return e.message;
     }
   }
+
 }
